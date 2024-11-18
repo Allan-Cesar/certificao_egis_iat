@@ -5,10 +5,11 @@ import subprocess
 import webbrowser
 from modules.pdf_processor import PDFProcessor
 from modules.nc_extractor import NCExtractorApp
+from modules.respostas_extractor import ResponseExtractorApp
 
 class MainWindow:
     
-    version = "1.1.0"  # Versão atual do app
+    version = "1.2.0"  # Versão atual do app
     
     def __init__(self, root):
         self.root = root
@@ -23,7 +24,7 @@ class MainWindow:
         # Botões para acessar os módulos
         tk.Button(self.root, text="Processar PDFs", command=self.open_pdf_processor).pack(pady=10)
         tk.Button(self.root, text="Extrair NCs Consolidadas", command=self.open_nc_extractor).pack(pady=10)
-        tk.Button(self.root, text="Extrair Respostas", command=self.extract_responses).pack(pady=10)
+        tk.Button(self.root, text="Extrair Respostas", command=self.open_response_extractor).pack(pady=10)
         tk.Button(self.root, text="Outros Módulos", command=self.show_other_modules).pack(pady=10)
 
     def open_pdf_processor(self):
@@ -50,7 +51,7 @@ class MainWindow:
         current_version = MainWindow.version
         version_file_url = "https://raw.githubusercontent.com/Allan-Cesar/Hand_Helper_EGIS/main/version.txt"
         headers = {
-            "Authorization": "token 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"  # Seu token
+            "Authorization": "token COLOCAR AQUI"  # Seu token
         }
 
         try:
@@ -103,6 +104,14 @@ class MainWindow:
                 webbrowser.open(download_url)
         except Exception as e:
             messagebox.showerror("Erro ao baixar atualização", str(e))
+            
+    def open_response_extractor(self):
+        response_window = tk.Toplevel(self.root)
+        response_window.transient(self.root)
+        response_window.grab_set()
+        response_window.focus_set()
+        ResponseExtractorApp(response_window)
+
 
 if __name__ == "__main__":
     root = tk.Tk()

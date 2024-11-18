@@ -163,7 +163,7 @@ def extract_ncs_from_pdf(pdf_path):
     inside_header = False  # Controle de cabeçalho para remoção
 
     # Expressão regular para identificar o início de cada NC
-    nc_start_pattern = re.compile(r'^\d+\.\s+Requisito não atendido:')
+    nc_start_pattern = re.compile(r'^\d+\.\s+Requisito não atendido')
 
     # Padrões para detectar linhas específicas do cabeçalho
     header_patterns = [
